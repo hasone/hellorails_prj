@@ -52,3 +52,6 @@ Things you may want to cover:
 	c. 修改index.html.erb
 	    vim app/views/products/index/html.erb
 	到此为止，可以再重新加载一次http//localhost:3000/products查看网页效果
+
+* Step 6. how to do database rollback
+	rails db:rollback
