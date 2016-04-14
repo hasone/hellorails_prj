@@ -39,4 +39,6 @@ Things you may want to cover:
 	rails generate scaffold Product title:string \
 	  description:text image_url:string price:decimal
 
-	
+* Step 4. 创建Product数据库实体
+	rails db:create
+	rails db:migrate
