@@ -42,3 +42,13 @@ Things you may want to cover:
 * Step 4. 创建Product数据库实体
 	rails db:create
 	rails db:migrate
+
+* Step 5. 优化css
+	到Step4为止，可以使用rails server启动本地的rails服务，并在浏览器中输入http://localhost:3000/products查看生成的网页效果
+	a. 修改products.scss
+	    vim app/assets/stylesheets/products.scss
+	b. 修改application.html.erb
+	    vim app/views/layouts/application.html.erb
+	c. 修改index.html.erb
+	    vim app/views/products/index/html.erb
+	到此为止，可以再重新加载一次http//localhost:3000/products查看网页效果
