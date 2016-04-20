@@ -53,5 +53,6 @@ bower.json
 /tmp
 .Trashes
 *.lock
-
+*.*~
+*.bak
 
