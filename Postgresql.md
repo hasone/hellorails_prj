@@ -4,7 +4,7 @@
 	  sudo -u postgres psql
 	b. 普通登录
 	  psql -U dbuser -d database -h 127.0.0.1 -p 543
-
+	
     2. 查看控制台帮助文档
         > \h
 
@@ -29,12 +29,24 @@
 	b. 登录控制台创建用户
 	  sudo -u postgres psql
 	  > create user dbuser with password 'password'
-
+	c. 修改密码 
+	  ALTER USER postgres WITH PASSWORD 'postgres';
+	d. 常用创建用户命令
+	  sudo postgres -c createuser -D -A -P username
     8. 修改密码
-	> \password dbuser
-
+	a. psql终端修改dbuser密码	
+	  > \password dbuser
+	b. psql终端修改dbuser密码
+	  > alter user dbuser with password 'password';
+	c. 删除linux系统postgres用户的密码
+	  > sudo passwd -d postgres
+	d. 修改linux系统postgres用户的密码
+	  > sudo -u postgres passwd
     9. 删除用户
-	> drop user dbuser;
+	a. 在terminal中执行
+	  sudo -u postgres dropuser dbuser
+	b. 在psql终端中执行
+	  > drop user dbuser;
 
     10. 创建数据库
 	a. 方式一
@@ -46,7 +58,8 @@
 	  > alter schema public owner to dbuser;
 	  > grant all privileges on all sequences in schema public to dbuser;
 	  > grant all privileges on all tables in schema public to dbuser;
-
+	c. 常用创建数据库命令
+	  sudo postgres -c createdb -O username dbname
     11. 退出控制台
 	> \q
 
