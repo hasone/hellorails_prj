@@ -16,9 +16,9 @@ set :environment, ENV['RAILS_ENV'] || 'development'
 set :domain, '163.44.165.225'
 set :user, 'luhuawen'
 set :port, '11111'
-set :deploy_to, '/fenxuekeji/depot'
+set :deploy_to, '/fenxuekeji/hellorails_prj'
 set :repository, 'git@github.com:hasone/hellorails_prj.git'
-set :branch, 'login'
+set :branch, 'master'
 # For system-wide RVM install.
 #   set :rvm_path, '/usr/local/rvm/bin/rvm'
 
@@ -62,7 +62,7 @@ end
 # For Rails apps, we'll make some of the shared paths that are shared between
 # all releases.
 task :setup => :environment do
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/{log,sockets,pids}"]
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/log"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log"]
 
   queue! %[mkdir -p "#{deploy_to}/#{shared_path}/config"]
@@ -78,13 +78,11 @@ task :setup => :environment do
 
     queue %[
       if ! ssh-keygen -H  -F #{repo_host} &>/dev/null; then
-        ssh-keyscan -t rsa -p #{repo_port} -H #{repo_host} >> ~/.ssh/known_hosts
-      fi
+    ssh-keyscan -t rsa -p #{repo_port} -H #{repo_host} >> ~/.ssh/known_hosts
+    fi
     ]
   end
 end
-
-# set :bundle_bin, %{RAILS_ENV=#{env} /usr/local/ruby/bin/bundle}
 
 desc "Deploys the current version to the server."
 task :deploy => :environment do
@@ -102,23 +100,13 @@ task :deploy => :environment do
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
 
-
     to :launch do
-      # queue "mkdir -p #{deploy_to}/#{current_path}/shared/tmp/{sockets,pids,logs}"
+      queue "mkdir -p #{deploy_to}/#{current_path}/shared/{log,pids,sockets}"
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
       invoke :'puma:restart'
     end
   end
-
-
-=begin
-    to :launch do
-      queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
-      queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
-    end
-  end
-=end
 
 end
 
@@ -142,25 +130,9 @@ namespace :puma do
   end
 end
 
-=begin
-desc "Set the environment variables."
-task :set_env_variables => :environment do
-  queue! "cd #{deploy_to}/"
-  queue! "export GEM_HOME=$PWD/gems"
-  queue! "export RUBYLIB=$PWD/lib"
-  queue! "export PATH=$PWD/bin:$PATH"
-  queue! "export LD_LIBRARY_PATH=$HOME/lib/"
-end
-
-to :prepare do
-  run "bundle install"
-end
-commands(:prepare) == ["bundle install"]
-=end
 # For help in making your deploy script, see the Mina documentation:
 #
 #  - http://nadarei.co/mina
 #  - http://nadarei.co/mina/tasks
 #  - http://nadarei.co/mina/settings
 #  - http://nadarei.co/mina/helpers
-
