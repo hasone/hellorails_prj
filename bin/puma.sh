@@ -2,9 +2,9 @@
 
 if [ -n "$RAILS_ENV" ]; then
 
-  PUMA_CONFIG_FILE=/fenxuekeji/depot/current/config/puma.rb
-  PUMA_PID_FILE=/fenxuekeji/depot/tmp/pids/puma.pid
-  PUMA_SOCKET=/fenxuekeji/depot/tmp/sockets/socket.sock
+  PUMA_CONFIG_FILE=/fenxuekeji/hellorails_prj/current/config/puma.rb
+  PUMA_PID_FILE=/fenxuekeji/hellorails_prj/tmp/pids/puma.pid
+  PUMA_SOCKET=/fenxuekeji/hellorails_prj/tmp/sockets/socket.sock
 
   # check if puma process is running
   puma_is_running() {

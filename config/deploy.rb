@@ -14,11 +14,11 @@ require 'mina/git'
 # set :rails_env,  ENV['RAILS_ENV'] || 'production'
 set :environment, ENV['RAILS_ENV'] || 'development'
 set :domain, '163.44.165.225'
-set :user, 'luhuawen'
+set :user, 'mina_deploy'
 set :port, '11111'
 set :deploy_to, '/fenxuekeji/hellorails_prj'
 set :repository, 'git@github.com:hasone/hellorails_prj.git'
-set :branch, 'master'
+set :branch, 'puma'
 # For system-wide RVM install.
 #   set :rvm_path, '/usr/local/rvm/bin/rvm'
 

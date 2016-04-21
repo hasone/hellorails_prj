@@ -31,7 +31,7 @@ workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 
 # app_dir = File.expand_path("../..", __FILE__)
 if ENV['RAILS_ENV'] == "production"
-  app_name = "whistler"
+  app_name = "hellorails_prj"
   app_dir = File.expand_path("../..", __FILE__)
   application_path = "/fenxuekeji/#{app_name}"
   directory "#{application_path}/current"
