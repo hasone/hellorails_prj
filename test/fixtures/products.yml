@@ -12,3 +12,12 @@ two:
   description: "hello ruby on rails"
   image_url: "http://img1.she8844.com/forum/day_120223/1202231028d45a6812e79b2829.jpg"
   price: 19.99
+
+ruby:
+  title: "Programming Ruby 2.3"
+  description: "
+  Ruby is the fastest growing and most exciting dynamic
+  language out there. If you need to get working programs
+  delivered fast, you should add Ruby to your toolbox."
+  price: 49.50
+  image_url: "http://i.k1982.com/design_img/201109/201109011531033858.jpg"

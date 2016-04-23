@@ -22,7 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * Step 1. 创建基于ruby2.3.0pre的Rails5.0.0beta3项目，项目名称为depot
-	rails new depot -d postgresql -B -T
+	rails new depot -d postgresql -B
+	# rails new depot -d postgresql -B -T
 
 * Step 2. 初始化git
 	cd depot
@@ -55,3 +56,15 @@ Things you may want to cover:
 
 * Step 6. how to do database rollback
 	rails db:rollback
+
+* Step 7. 数据库初始化脚本编写
+	数据库初始化脚本文件为db/seeds.rb，需要初始化的数据请完成此文件的编写。
+	编写完成后，执行rails db:seed即可在数据库生成初始化的数据
+
+* Step 8. rails单元测试
+	单元测试的代码及database.yml文件均在test目录下，单元测试需要包含model validates
+	<!-- 编写完测试代码后，执行 rails test 执行全部单元测试 或执行 rails test directories/files  进行单元测试
+
+  * Step 9. 创建Store
+    rails generate controller Store index
+    
