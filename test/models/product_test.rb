@@ -58,7 +58,7 @@ class ProductTest < ActiveSupport::TestCase
   end
 
   test "product is not valid without a unique title" do
-    product = Product.new(title:       products(:one).title,
+    product = Product.new(title:       products(:ruby).title,
                           description: "what is deploy-robot",
                           price:       1,
                           image_url:   "http://www.qqya.com/qqyaimg/allimg/140207/12302923W-1.jpg")
@@ -68,7 +68,7 @@ class ProductTest < ActiveSupport::TestCase
   end
 
   test "product is not valid without a unique title - i18n" do
-    product = Product.new(title:       products(:one).title,
+    product = Product.new(title:       products(:ruby).title,
                           description: "what is ci",
                           price:       1,
                           image_url:   "http://www.qqya.com/qqyaimg/allimg/140207/1230293252-4.jpg")
