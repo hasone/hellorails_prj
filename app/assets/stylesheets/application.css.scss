@@ -27,6 +27,7 @@ body, body > p, body > ol, body > ul, body > td {margin: 8px !important}
   text-align: center;
 
   img {
+    width: 45px;
     float: left;
   }
 }
@@ -47,9 +48,8 @@ body, body > p, body > ol, body > ul, body > td {margin: 8px !important}
 #columns {
   background: #141;
   display: flex;
-}
 
-#main {
+  #main {
     padding: 1em;
     background: white;
     flex: 1;
