@@ -1,3 +1,6 @@
+if ENV['RAILS_ENV'].nil? || ENV['RAILS_ENV'] != 'production'
+  return
+end
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
@@ -10,7 +13,7 @@ threads threads_count, threads_count
 # end
 # Specifies the `environment` that Puma will run in.
 #
-environment ENV['RAILS_ENV'] || 'production'
+environment ENV['RAILS_ENV']
 # environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Specifies the number of `workers` to boot in clustered mode.
@@ -52,6 +55,7 @@ else
   # Specifies the `port` that Puma will listen on to receive requests, default is 3000.
   #
   port        ENV.fetch("PORT") { 3000 }
+  preload_app!
 end
 
 # The code in the `on_worker_boot` will be called if you are using

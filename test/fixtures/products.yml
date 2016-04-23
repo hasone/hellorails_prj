@@ -1,0 +1,14 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: "ruby-china"
+  description: "hello ruby china"
+  image_url: "http://www.petmrs.com/uploads/allimg/140531/3-140531154621.jpg"
+  price: 9.99
+
+two:
+  title: ruby-on-rails
+  description: "hello ruby on rails"
+  image_url: "http://img1.she8844.com/forum/day_120223/1202231028d45a6812e79b2829.jpg"
+  price: 19.99

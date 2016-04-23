@@ -101,10 +101,11 @@ task :deploy => :environment do
     invoke :'deploy:cleanup'
 
     to :launch do
-      queue "mkdir -p #{deploy_to}/shared/tmp/{log,pids,sockets}"
+      # queue "mkdir -p #{deploy_to}/shared/tmp/{log,pids,sockets}"
       # queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       # queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
       invoke :'puma:restart'
+
     end
   end
 
