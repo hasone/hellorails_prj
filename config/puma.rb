@@ -1,3 +1,6 @@
+if ENV['RAILS_ENV'].nil? || ENV['RAILS_ENV'] != 'production'
+  return
+end
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
@@ -7,13 +10,10 @@
 threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }.to_i
 threads threads_count, threads_count
 
-# Specifies the `port` that Puma will listen on to receive requests, default is 3000.
-#
-# port        ENV.fetch("PORT") { 3000 }
-
+# end
 # Specifies the `environment` that Puma will run in.
 #
-environment ENV['RAILS_ENV'] || 'production'
+environment ENV['RAILS_ENV']
 # environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Specifies the number of `workers` to boot in clustered mode.
@@ -32,22 +32,32 @@ workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 # block.
 #
 
-app_name = "depot"
-application_path = "/fenxuekeji/#{app_name}"
-directory "#{application_path}/current"
+# app_dir = File.expand_path("../..", __FILE__)
+if ENV['RAILS_ENV'] == "production"
+  app_name = "hellorails_prj"
+  app_dir = File.expand_path("../..", __FILE__)
+  application_path = "/fenxuekeji/#{app_name}"
+  directory "#{application_path}/current"
 
-pidfile "#{application_path}/shared/tmp/pids/puma.pid"
-state_path "#{application_path}/shared/tmp/sockets/puma.state"
-stdout_redirect "#{application_path}/shared/log/puma.stdout.log", "#{application_path}/shared/log/puma.stderr.log"
-bind "unix://#{application_path}/shared/tmp/sockets/socket.sock"
-activate_control_app "unix://#{application_path}/shared/tmp/sockets/pumactl.sock"
+  pidfile "#{application_path}/shared/tmp/pids/puma.pid"
+  state_path "#{application_path}/shared/tmp/sockets/puma.state"
+  stdout_redirect "#{application_path}/shared/log/puma.stdout.log", "#{application_path}/shared/log/puma.stderr.log"
+  bind "unix://#{application_path}/shared/tmp/sockets/socket.sock"
+  activate_control_app "unix://#{application_path}/shared/tmp/sockets/pumactl.sock"
 
-daemonize true
-on_restart do
+  daemonize true
+  on_restart do
     puts 'On restart...'
+  end
+
+  preload_app!
+else
+  # Specifies the `port` that Puma will listen on to receive requests, default is 3000.
+  #
+  port        ENV.fetch("PORT") { 3000 }
+  preload_app!
 end
 
-preload_app!
 # The code in the `on_worker_boot` will be called if you are using
 # clustered mode by specifying a number of `workers`. After each worker
 # process is booted this block will be run, if you are using `preload_app!`

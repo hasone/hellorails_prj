@@ -1,72 +1,74 @@
 #! /bin/sh
-# require 'rubygems'
 
-PUMA_CONFIG_FILE=/fenxuekeji/depot/current/config/puma.rb
-PUMA_PID_FILE=/fenxuekeji/depot/shared/tmp/pids/puma.pid
-PUMA_SOCKET=/fenxuekeji/depot/shared/tmp/sockets/socket.sock
+if [ -n "$RAILS_ENV" ]; then
 
-# check if puma process is running
-puma_is_running() {
-  if [ -S $PUMA_SOCKET ] ; then
-    if [ -e $PUMA_PID_FILE ] ; then
-      if cat $PUMA_PID_FILE | xargs ps -p > /dev/null ; then
-        return 0
+  PUMA_CONFIG_FILE=/fenxuekeji/hellorails_prj/current/config/puma.rb
+  PUMA_PID_FILE=/fenxuekeji/hellorails_prj/shared/tmp/pids/puma.pid
+  PUMA_SOCKET=/fenxuekeji/hellorails_prj/shared/tmp/sockets/socket.sock
+
+  # check if puma process is running
+  puma_is_running() {
+    if [ -S $PUMA_SOCKET ] ; then
+      if [ -e $PUMA_PID_FILE ] ; then
+        if cat $PUMA_PID_FILE | xargs ps -p > /dev/null ; then
+          return 0
+        else
+          echo "No puma process found"
+        fi
       else
-        echo "No puma process found"
+        echo "No puma pid file found"
       fi
     else
-      echo "No puma pid file found"
+      echo "No puma socket found"
     fi
-  else
-    echo "No puma socket found"
-  fi
 
-  return 1
-}
+    return 1
+  }
 
-case "$1" in
-  start)
-    echo "Starting puma..."
-      rm -f $PUMA_SOCKET
-      if [ -e $PUMA_CONFIG_FILE ] ; then
-        bundle exec puma -C $PUMA_CONFIG_FILE
-      else
-        bundle exec puma
-      fi
+  case "$1" in
+    start)
+      echo "Starting puma..."
+        rm -f $PUMA_SOCKET
+        if [ -e $PUMA_CONFIG_FILE ] ; then
+          bundle exec puma -C $PUMA_CONFIG_FILE
+        else
+          bundle exec puma
+        fi
 
-    echo "done"
-    ;;
+      echo "done"
+      ;;
 
-  stop)
-    echo "Stopping puma..."
-      kill -s TERM `cat $PUMA_PID_FILE`
-      rm -f $PUMA_PID_FILE
-      rm -f $PUMA_SOCKET
+    stop)
+      echo "Stopping puma..."
+        kill -s TERM `cat $PUMA_PID_FILE`
+        rm -f $PUMA_PID_FILE
+        rm -f $PUMA_SOCKET
 
-    echo "done"
-    ;;
+      echo "done"
+      ;;
 
-  restart)
-    if puma_is_running ; then
-      echo "Hot-restarting puma..."
-      kill -s USR2 `cat $PUMA_PID_FILE`
-
-      echo "Doublechecking the process restart..."
-      sleep 5
+    restart)
       if puma_is_running ; then
-        echo "done"
-        exit 0
-      else
-        echo "Puma restart failed :/"
+        echo "Hot-restarting puma..."
+        kill -s USR2 `cat $PUMA_PID_FILE`
+
+        echo "Doublechecking the process restart..."
+        sleep 5
+        if puma_is_running ; then
+          echo "done"
+          exit 0
+        else
+          echo "Puma restart failed :/"
+        fi
       fi
-    fi
 
-    echo "Trying cold reboot"
+      echo "Trying cold reboot"
 
-    bin/puma.sh start
-    ;;
+      bin/puma.sh start
+      ;;
 
-  *)
-    echo "Usage: bin/puma.sh {start|stop|restart}" >&2
-    ;;
-esac
+    *)
+      echo "Usage: bin/puma.sh {start|stop|restart}" >&2
+      ;;
+  esac
+fi

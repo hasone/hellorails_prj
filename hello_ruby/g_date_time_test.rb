@@ -103,3 +103,7 @@ puts future
 
 diff = future - now      # => 10  Time - Time => 秒数
 puts diff
+
+exec "whoami"
+app_dir = File.expand_path("../..", __FILE__)
+puts "aabb  #{app_dir}"
