@@ -1,5 +1,5 @@
 #!/usr/bin/ruby -w
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 
 # 在 Ruby 中，您可以通过在变量或常量前面放置 # 字符，来访问任何变量或常量的值
 
@@ -10,15 +10,15 @@ $global_variable = 10
 NUM_ONE = 1
 
 class Class1
-    def print_global
-        puts "Class1调用全局变量$global_variable，输出为：#$global_variable "
-    end
+  def print_global
+    puts "Class1调用全局变量$global_variable，输出为：#$global_variable "
+  end
 end
 
 class Class2
-    def print_global
-        puts "Class2调用全局变量$global_variable，输出为：#$global_variable "
-    end
+  def print_global
+    puts "Class2调用全局变量$global_variable，输出为：#$global_variable "
+  end
 end
 
 class1obj = Class1.new
@@ -27,7 +27,7 @@ class1obj.print_global
 class2obj = Class2.new
 class2obj.print_global
 
-puts "调用常量 NUM_ONE 输出为：#{NUM_ONE}" 
+puts "调用常量 NUM_ONE 输出为：#{NUM_ONE}"
 
 =begin
     Ruby 伪变量
@@ -41,7 +41,7 @@ puts "调用常量 NUM_ONE 输出为：#{NUM_ONE}"
 =end
 
 def test(a="Ruby", b="Perl")
-    puts "a = #{a}, b = #{b}"
+  puts "a = #{a}, b = #{b}"
 end
 
 test
@@ -50,14 +50,11 @@ test "Java", "Javascript"
 
 # 可变数量的参数
 def sample (*test)
-    for i in 0...test.length
-        print "#{test[i]}, "
-    end
-    puts "参数个数为 #{test.length}"
+  for i in 0...test.length
+    print "#{test[i]}, "
+  end
+  puts "参数个数为 #{test.length}"
 end
 
 sample "Zara", "H&M"
 sample "如家", "七天", "汉庭", "速8"
-
-
-

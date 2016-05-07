@@ -1,5 +1,5 @@
 #!/usr/bin/ruby -w
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 
 =begin
     模块（Module）是一种把方法、类和常量组合在一起的方式。模块（Module）为您提供了两大好处。
@@ -24,11 +24,11 @@
 =end
 
 module Week
-   FIRST_DAY = "Sunday"
-   def Week.weeks_in_month
-      puts "You have four weeks in a month"
-   end
-   def Week.weeks_in_year
-      puts "You have 52 weeks in a year"
-   end
+  FIRST_DAY = "Sunday"
+  def Week.weeks_in_month
+    puts "You have four weeks in a month"
+  end
+  def Week.weeks_in_year
+    puts "You have 52 weeks in a year"
+  end
 end

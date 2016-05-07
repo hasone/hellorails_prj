@@ -1,0 +1,46 @@
+# coding: utf-8
+require File.join(File.expand_path"../../../config/environment.rb", __FILE__)
+
+def trans_brand(file_path)
+  if File.directory? file_path
+    Dir.foreach(file_path) do |file|
+      if file != "." and file != ".."
+        trans_brand(file_path + "/" + file)
+      end
+    end
+  else
+    extname = File.extname(file_path)
+    filename = File.basename(file_path, ".*")
+    if [".jpg", ".JPG", ".png", ".PNG", ".gif", ".GIF"].include?(extname)
+
+      # brand = Brand.find_or_create_by(name: filename)
+      brand = Brand.find_by_name(filename)
+      if brand.present?
+        puts "======================= brand: #{filename} is exists, if you want update, please goto admin_web!"
+      else
+        brand.logo = File.open(file_path)
+        if brand.save
+          puts "+++++++++++++++++++++++ brand: #{filename} save success."
+        else
+          puts "----------------------- brand: #{filename} save failed!"
+        end
+      end
+    else
+      puts "WARN : file #{filename}#{extname} is not image!"
+    end
+  end
+end
+
+
+case ARGV.count
+when 1
+  path = ARGV[0]
+  if Dir.exist? path
+    trans_brand path
+  else
+    puts "ERR : #{path} isn't directory or isn't exists!"
+  end
+else
+  puts "usage #{$0} filename"
+  exit 1
+end

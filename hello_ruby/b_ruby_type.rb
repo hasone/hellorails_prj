@@ -1,4 +1,4 @@
-#! /usr/bin/ruby -w
+#!/usr/bin/ruby -w
 # -*- coding: utf-8 -*-
 
 =begin
@@ -12,9 +12,9 @@
     大写字母开头：常数（Constant）。
 =end
 
-#整型 Integer 以下是一些整型字面量 
-#字面量（literal）：代码中能见到的值，数值，bool值，字符串等都叫字面量 
-#如以下的0,1_000_000,0xa等 
+#整型 Integer 以下是一些整型字面量
+#字面量（literal）：代码中能见到的值，数值，bool值，字符串等都叫字面量
+#如以下的0,1_000_000,0xa等
 
 a1= 123          # Fixnum 十进制
 a2 = 1_234      # Fixnum 带有下划线的十进制
@@ -39,7 +39,7 @@ puts b1, b2, b3, b4
 # 算术操作
 # 加减乘除操作符：+-*/；指数操作符为**, 指数不必是整数
 
-puts 2**(7/3) # 7与3的商为2，然后2的2次方为4 
+puts 2**(7/3) # 7与3的商为2，然后2的2次方为4
 
 # 字符串类型
 # Ruby 字符串简单地说是一个 8 位字节序列，它们是类 String 的对象。
@@ -139,25 +139,25 @@ puts "#{array3} #{array4} #{array5}" "#{array6}"
 
 # 哈希类型
 # Ruby 哈希是在大括号内放置一系列键/值对，键和值之间使用逗号和序列 => 分隔。尾部的逗号会被忽略。
-# 通过 new 类方法创建一个空的哈希：
-hash1 = Hash.new
-# 可以使用 new 创建带有默认值的哈希，不带默认值的哈希是 nil：
-hash2 = Hash.new("month")
-hash3 = Hash.new "month"
-puts "#{hash1} #{hash2} #{hash3}"
-puts "#{hash1[0]}"
-puts "#{hash2[5]} #{hash3[5]}"
+    # 通过 new 类方法创建一个空的哈希：
+    hash1 = Hash.new
+    # 可以使用 new 创建带有默认值的哈希，不带默认值的哈希是 nil：
+    hash2 = Hash.new("month")
+    hash3 = Hash.new "month"
+    puts "#{hash1} #{hash2} #{hash3}"
+    puts "#{hash1[0]}"
+    puts "#{hash2[5]} #{hash3[5]}"
 
-hash4 = Hash["a" => 100, "b" => 200]
-puts "#{hash4['a']} #{hash4["b"]}"
+    hash4 = Hash["a" => 100, "b" => 200]
+    puts "#{hash4['a']} #{hash4["b"]}"
 
-hash5 = { "red" => 0xf00, "green" => 0x0f0, "blue" => 0x00f }
-hash5.each do |key, value|
-    print key, " is ", value, "\n"
-end
+    hash5 = { "red" => 0xf00, "green" => 0x0f0, "blue" => 0x00f }
+    hash5.each do |key, value|
+      print key, " is ", value, "\n"
+    end
 
 
-# 范围类型
+    # 范围类型
 =begin
     一个范围表示一个区间。
     范围是通过设置一个开始值和一个结束值来表示。范围可使用 s..e 和 s...e 来构造，或者通过 Range.new 来构造。
@@ -165,37 +165,37 @@ end
     范围 (1..5) 意味着它包含值 1, 2, 3, 4, 5，范围 (1...5) 意味着它包含值 1, 2, 3, 4 。
 =end
 
-(10..15).each do |n|
-    print n, ' '
-end
+    (10..15).each do |n|
+      print n, ' '
+    end
 
-('A'..'z').each do |n|
-    print n, ""
-end
+    ('A'..'z').each do |n|
+      print n, ""
+    end
 
-$, =", "   # Array 值分隔符
-range1 = (1..10).to_a
-range2 = ('bar'..'bay').to_a
+    $, =", "   # Array 值分隔符
+    range1 = (1..10).to_a
+    range2 = ('bar'..'bay').to_a
 
-puts "#{range1}"
-puts "#{range2}"
+    puts "#{range1}"
+    puts "#{range2}"
 
-range3 = 0..9
+    range3 = 0..9
 
-puts range3.include?(5)
-ret = range3.min
-puts "最小值为 #{ret}"
+    puts range3.include?(5)
+    ret = range3.min
+    puts "最小值为 #{ret}"
 
-ret = range3.max
-puts "最大值为 #{ret}"
+    ret = range3.max
+    puts "最大值为 #{ret}"
 
-ret = range3.reject {|i| i < 5 }
-puts "不符合条件的有 #{ret}"
+    ret = range3.reject {|i| i < 5 }
+    puts "不符合条件的有 #{ret}"
 
-range3.each do |digit|
-   print "在循环中 #{digit}"
-end
-puts ""
+    range3.each do |digit|
+      print "在循环中 #{digit}"
+    end
+    puts ""
 
 =begin
 while gets
@@ -203,34 +203,34 @@ while gets
 end
 =end
 
-# 范围可以用在 case 语句中：
-score = 70
+    # 范围可以用在 case 语句中：
+    score = 70
 
-result = case score
-when 0..40
-    "糟糕的分数"
-when 41..60
-    "快要及格"
-when 61..70
-    "及格分数"
-when 71..100
-    "良好分数"
-else
-    "错误的分数"
-end
+    result = case score
+    when 0..40
+      "糟糕的分数"
+    when 41..60
+      "快要及格"
+    when 61..70
+      "及格分数"
+    when 71..100
+      "良好分数"
+    else
+      "错误的分数"
+    end
 
-puts result
+    puts result
 
 
-# 范围的最后一个用途是间隔检测：检查指定值是否在指定的范围内。需要使用 === 相等运算符来完成计算。
-if ((1..10) === 5)
-  puts "5 在 (1..10)"
-end
+    # 范围的最后一个用途是间隔检测：检查指定值是否在指定的范围内。需要使用 === 相等运算符来完成计算。
+    if ((1..10) === 5)
+      puts "5 在 (1..10)"
+    end
 
-if (('a'..'j') === 'c')
-  puts "c 在 ('a'..'j')"
-end
+    if (('a'..'j') === 'c')
+      puts "c 在 ('a'..'j')"
+    end
 
-if (('a'..'j') === 'z')
-  puts "z 在 ('a'..'j')"
-end
+    if (('a'..'j') === 'z')
+      puts "z 在 ('a'..'j')"
+    end

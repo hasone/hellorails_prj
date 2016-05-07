@@ -1,5 +1,5 @@
 #!/usr/bin/ruby -w
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 
 time1 = Time.new
 
