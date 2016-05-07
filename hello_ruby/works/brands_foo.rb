@@ -28,6 +28,26 @@ def file_method
 =end
 end
 
+
+
+def trans_brand(dir_path)
+  if File.directory? dir_path
+    Dir.foreach(dir_path) do |file|
+      if file != "." and file != ".."
+        trans_brand(dir_path + "/" + file)
+      end
+    end
+  else
+    puts "File:#{File.basename(dir_path)}, ftype:#{File.ftype(dir_path)}, basename:#{File.basename(dir_path, ".*")} extname:#{File.extname(dir_path)}, Size:#{File.size(dir_path)}"
+    file1 = File.read(dir_path)
+    puts file1
+    file2 = File.open(dir_path)
+    puts file2
+  end
+end
+
+trans_brand("/home/think/1/2")
+
 # e = SkiEquipment.first
 # print e.methods.sort
 # puts e.to_yaml

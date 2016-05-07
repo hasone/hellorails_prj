@@ -1,5 +1,5 @@
 #!/usr/bin/ruby -w
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 
 =begin
     Ruby 块
@@ -11,24 +11,24 @@
 =end
 
 def test
-    puts "我在test方法这儿"
-    yield
-    puts "回到test方法里"
-    yield
+  puts "我在test方法这儿"
+  yield
+  puts "回到test方法里"
+  yield
 end
 
 # test块
 test {
-    puts "来到了test块这儿"
+  puts "来到了test块这儿"
 }
 
 def testYield
-    puts "在testYield方法内"
-    yield 998
-    puts "回到testYield方法内"
-    yield 99
+  puts "在testYield方法内"
+  yield 998
+  puts "回到testYield方法内"
+  yield 99
 end
 
 testYield { |i|
-    puts "这是一个带参数的Ruby 块, 参数值： #{i}"
+  puts "这是一个带参数的Ruby 块, 参数值： #{i}"
 }
