@@ -53,7 +53,7 @@
 	  sudo -u postgres createdb -O dbuser testdb
 	b. 方式二
 	  > create database testdb owner dbuser;
-	  > gant all privileges on database testdb to dbuser;
+	  > grant all privileges on database testdb to dbuser;
 	  > \c testdb;
 	  > alter schema public owner to dbuser;
 	  > grant all privileges on all sequences in schema public to dbuser;
