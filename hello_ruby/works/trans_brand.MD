@@ -22,7 +22,10 @@ trans_brand.rb为品牌表数据初始化脚本，
       ssh [-p port_num] user@host "tar -xvf brands.tar"
       
    c. 在远程服务器中执行trans_brand.rb脚本，调用时需要指定品牌图片的文件夹路径，例如：
-      ssh [-p port_num] user@host "cd /fenxuekeji/whistler/current/app/works && ruby trans_brand.rb /tmp/brands"
+      ssh [-p port_num] user@host
+        >> cd /fenxuekeji/whistler/current/script
+        >> ruby trans_brand.rb /tmp/brands
+      
 
 
  

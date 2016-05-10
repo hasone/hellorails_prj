@@ -48,6 +48,27 @@
 	b. 在psql终端中执行
 	  > drop user dbuser;
 
+    10. 修改用户权限
+        alter role user
+            SUPERUSER
+            NOSUPERUSER
+            CREATEDB
+            NOCREATEDB
+            CREATEROLE
+            NOCREATEROLE
+            CREATEUSER
+            NOCREATEUSER
+            INHERIT
+            NOINHERIT
+            LOGIN
+            NOLOGIN
+            CONNECTION LIMIT connlimit
+            PASSWORD password
+            ENCRYPTED
+            UNENCRYPTED
+            VALID UNTIL 'timestamp'
+
+
     10. 创建数据库
 	a. 方式一
 	  sudo -u postgres createdb -O dbuser testdb
@@ -129,3 +150,4 @@
 	4. psql testdb < testdb.sql 导入数据
 
 	
+    15. 
